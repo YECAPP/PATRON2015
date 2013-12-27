@@ -1,0 +1,54 @@
+PROCEDURE comprobar 
+	lcPathServer="\\servidor\GAMA\gamat\"
+	
+	SELECT distinct codigo FROM c2 WHERE codigo NOT in (SELECT codigo FROM c1 ) INTO CURSOR noestan 
+	**uniendo con c1 
+	SELECT distinct ;
+		noestan.codigo,;
+		c1.nombre ;
+	FROM ;
+		lcPathServer+"c1.dbf" as c1 INNER JOIN  noestan ON c1.codigo=noestan.codigo	;
+	ORDER BY ;
+		1;
+	INTO CURSOR ;
+		enviarxls 
+	
+	MESSAGEBOX("revisando que no hayan cuentas ficticias")
+	SELECT * FROM noestan WHERE codigo NOT in (SELECT codigo FROM lcPathServer+"c1.dbf" )
+	
+	SELECT enviarxls 
+	
+	DO frxtoxls WITH "","","enviarxls","codigo,nombre","@,@","codigo,nombre","11,40","enviarxls","Reporte"
+
+	
+	
+	
+ENDPROC 
+PROCEDURE importContaGT
+	lcPath2Extract="C:\Users\YEC\Documents\FOX\CONTAS\NIIF\GT\"
+	lcPathLocal="C:\Users\YEC\Documents\FOX\CONTAS\Despacho\CONTATEL\PATRON\DATA\"
+	
+	
+	**importando c1
+	USE lcPathLocal+"c1.dbf"  EXCLUSIVE 
+	DELETE ALL 
+	PACK 
+	
+	APPEND FROM lcPath2Extract+"c1.dbf"
+	
+	**importando c2
+	USE lcPathLocal+"c2.dbf"  EXCLUSIVE 
+	DELETE ALL 
+	PACK 
+	
+	APPEND FROM lcPath2Extract+"c2.dbf"
+
+	IF VARTYPE(_screen.yoapp)="O"
+		_screen.RemoveObject("yoapp")
+	ENDIF 
+
+	_screen.NewObject("yoapp","yoapp","C:\Users\YEC\Documents\FOX\CONTAS\Despacho\CONTATEL\PATRON\LIB1.0\yoapp.vcx")
+	_screen.yoapp.ContaChangeCodFromList()
+
+
+ENDPROC 

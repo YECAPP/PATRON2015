@@ -1,0 +1,5 @@
+COPIAR  A   C:\WINDOWS\SYSTEM32
+
+	gdiplus.dll 
+	msvcr71.dll
+
