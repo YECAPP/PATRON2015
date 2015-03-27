@@ -1,0 +1,83 @@
+#INCLUDE XLSINCLUDE.H
+
+oExcel = Createobject("Excel.Application")
+oExcel.Workbooks.Add()
+oExcel.Sheets("Hoja1").Select()
+oSelect=oExcel.Range("A8:B8") &&CREANDO EL OBJETO
+
+DO Encabezado
+
+
+oExcel.Visible = .T.
+RELEASE oExcel
+
+
+
+PROCEDURE Encabezado
+	DO EncabezadoMemo
+ENDPROC 
+
+PROCEDURE EncabezadoMemo
+	SelectRange("A8:B8")
+	oSelect.Merge()
+	oSelect.HorizontalAlignment=xlCenter
+	oSelect.Value="Memo N°"
+	
+	
+	SelectRange("A9")
+	oSelect.Value="Intern. Order"	
+	SelectRange("B9")
+	oSelect.Value="Gte.Marca"
+	
+	SelectRange("A10")
+	oSelect.Value="Liq. gt.giras"
+	SelectRange("B10")
+	oSelect.Value="Gte./Coord."
+
+	SelectRange("A11")
+	oSelect.Value="# Autoriz."
+	SelectRange("B11")
+	oSelect.Value="Fecha"
+	
+	SelectRange("A8:B11")
+	oSelect.Interior.color=65535
+	
+	oSelect.Borders(xlEdgeLeft).LineStyle = xlContinuous
+	oSelect.Borders(xlEdgeLeft).Weight = xlThin
+	
+	oSelect.Borders(xlEdgeTop).LineStyle = xlContinuous
+	oSelect.Borders(xlEdgeTop).Weight = xlThin
+	
+	oSelect.Borders(xlEdgeBottom).LineStyle = xlContinuous
+	oSelect.Borders(xlEdgeBottom).Weight = xlThin
+	
+	oSelect.Borders(xlEdgeRight).LineStyle = xlContinuous
+	oSelect.Borders(xlEdgeRight).Weight = xlThin
+
+	oSelect.Borders(xlInsideVertical).LineStyle = xlContinuous
+	oSelect.Borders(xlInsideVertical).Weight = xlThin
+
+	
+ENDPROC 
+
+PROCEDURE EncabezadoDatos
+
+ENDPROC 
+
+PROCEDURE EncabezadoDetalle
+
+ENDPROC 
+
+PROCEDURE EncabezadoOtrosServicios
+
+ENDPROC 
+
+PROCEDURE EncabezadoPruebaArit
+
+ENDPROC 
+
+PROCEDURE SelectRange
+PARAMETERS tcRange
+	oExcel.Range(tcRange).Select()
+	oSelect=oExcel.Range(tcRange)
+ENDPROC

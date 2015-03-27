@@ -12,17 +12,15 @@ PROCEDURE JUN2013ADDWAREHOUSE
 		lbregresar=.t. 
 	ENDIF
 
-	lcTable="CONTADW"
+	lcTable="CONTADWCONTA"
 	IF FILE(lcTable+".dbf")=.f.
 		CREATE TABLE (lcTable) (;
-			CODIGO 	C (15 ),;
-			CUENTA 	C (50 ),;
+			CODIGO C (15 ),;
 			DESCRIP 	C (45 ),;
-			DESCRIP2 	C (45 ),;
-			REFERENCIA 	C (20 ),;
-			CFISCAL 	C (11 ),;
-			DEBE 	N (12 ,2 ),;
-			HABER 	N (12 ,2 );
+			MES 	C (2),;
+			AÑO		C (4),;
+			MONTO   N(10,2),;
+			PRESUP N(10,2);
 			)
 		IF !tbSilenceMode
 			MESSAGEBOX("Tabla "+lcTable +" Creada Con exito")

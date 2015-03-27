@@ -1,12 +1,12 @@
 *       *********************************************************
 *       *                                                         
-*       * 13/12/13              MENUM.MPR               13:14:07  
+*       * 07/02/14              MENUM.MPR               22:43:10  
 *       *                                                         
 *       *********************************************************
 *       *                                                         
 *       * Author's Name                                           
 *       *                                                         
-*       * Copyright (C) 2013 Company Name                         
+*       * Copyright (C) 2014 Company Name                         
 *       * Address                                                 
 *       * City,     Zip                                           
 *       *                                                         
@@ -41,19 +41,19 @@
 SET SYSMENU TO
 SET SYSMENU AUTOMATIC
 
-DEFINE PAD _3y60sd8w6 OF _MSYSMENU PROMPT "Archivo" COLOR SCHEME 3 ;
+DEFINE PAD _3zs1cp1pr OF _MSYSMENU PROMPT "Archivo" COLOR SCHEME 3 ;
 	KEY ALT+A, ""
-DEFINE PAD _3y60sd8w7 OF _MSYSMENU PROMPT "Reportes" COLOR SCHEME 3 ;
+DEFINE PAD _3zs1cp1ps OF _MSYSMENU PROMPT "Reportes" COLOR SCHEME 3 ;
 	KEY ALT+R, ""
-DEFINE PAD _3y60sd8w8 OF _MSYSMENU PROMPT "Herramientas" COLOR SCHEME 3 ;
+DEFINE PAD _3zs1cp1pt OF _MSYSMENU PROMPT "Herramientas" COLOR SCHEME 3 ;
 	KEY ALT+H, ""
-DEFINE PAD _3y60sd8w9 OF _MSYSMENU PROMPT "Salir" COLOR SCHEME 3 ;
+DEFINE PAD _3zs1cp1pu OF _MSYSMENU PROMPT "Salir" COLOR SCHEME 3 ;
 	KEY ALT+S, ""
-ON PAD _3y60sd8w6 OF _MSYSMENU ACTIVATE POPUP archivo
-ON PAD _3y60sd8w7 OF _MSYSMENU ACTIVATE POPUP reportes
-ON PAD _3y60sd8w8 OF _MSYSMENU ACTIVATE POPUP cambiarnom
-ON SELECTION PAD _3y60sd8w9 OF _MSYSMENU ;
-	DO _3y60sd8wa ;
+ON PAD _3zs1cp1pr OF _MSYSMENU ACTIVATE POPUP archivo
+ON PAD _3zs1cp1ps OF _MSYSMENU ACTIVATE POPUP reportes
+ON PAD _3zs1cp1pt OF _MSYSMENU ACTIVATE POPUP cambiarnom
+ON SELECTION PAD _3zs1cp1pu OF _MSYSMENU ;
+	DO _3zs1cp1pv ;
 	IN LOCFILE("PATRON\MENUM" ,"MPX;MPR|FXP;PRG" ,"WHERE is MENUM?")
 
 DEFINE POPUP archivo MARGIN RELATIVE SHADOW COLOR SCHEME 4
@@ -68,7 +68,7 @@ ON SELECTION BAR 1 OF archivo DO FORM MCTAS
 ON SELECTION BAR 2 OF archivo DO FORM PARTIDAS
 ON SELECTION BAR 3 OF archivo DO FORM CATAVER20
 ON SELECTION BAR 4 OF archivo ;
-	DO _3y60sd8wj ;
+	DO _3zs1cp1pw ;
 	IN LOCFILE("PATRON\MENUM" ,"MPX;MPR|FXP;PRG" ,"WHERE is MENUM?")
 
 DEFINE POPUP reportes MARGIN RELATIVE SHADOW COLOR SCHEME 4
@@ -85,13 +85,13 @@ ON SELECTION BAR 1 OF cambiarnom do cambiarnombre
 ON SELECTION BAR 2 OF cambiarnom do ImportCata
 ON SELECTION BAR 3 OF cambiarnom do CleanBd
 ON SELECTION BAR 4 OF cambiarnom ;
-	DO _3y60sd8wl ;
+	DO _3zs1cp1px ;
 	IN LOCFILE("PATRON\MENUM" ,"MPX;MPR|FXP;PRG" ,"WHERE is MENUM?")
 
 
 *       *********************************************************
 *       *                                                         
-*       * _3Y60SD8WA  ON SELECTION PAD                            
+*       * _3ZS1CP1PV  ON SELECTION PAD                            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -102,7 +102,7 @@ ON SELECTION BAR 4 OF cambiarnom ;
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _3y60sd8wa
+PROCEDURE _3zs1cp1pv
 &&ELIMINANDO ARCHIVOS TEMPORALES
 DIMENSION laextensions(4)
 laextensions(1)="*.dbf"
@@ -133,7 +133,7 @@ QUIT
 
 *       *********************************************************
 *       *                                                         
-*       * _3Y60SD8WJ  ON SELECTION BAR 4 OF POPUP archivo         
+*       * _3ZS1CP1PW  ON SELECTION BAR 4 OF POPUP archivo         
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -144,7 +144,7 @@ QUIT
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _3y60sd8wj
+PROCEDURE _3zs1cp1pw
 TRY
 IF USED("C1")
 	SELECT c1
@@ -170,7 +170,7 @@ ENDTRY
 
 *       *********************************************************
 *       *                                                         
-*       * _3Y60SD8WL  ON SELECTION BAR 4 OF POPUP cambiarnom      
+*       * _3ZS1CP1PX  ON SELECTION BAR 4 OF POPUP cambiarnom      
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -181,7 +181,7 @@ ENDTRY
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _3y60sd8wl
+PROCEDURE _3zs1cp1px
 IF INPUTBOX("Ingrese su Clave","Clave","Clave")="admin"
 	IF USED("c1")=.f.
 		USE c1 IN 0
